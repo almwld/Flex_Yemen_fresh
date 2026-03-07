@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flex_yemen_redesign/utils/constants.dart';
-import 'cart_badge.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final bool isDarkMode;
@@ -21,29 +19,15 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      elevation: 0,
-      backgroundColor: Colors.transparent,
-      leading: IconButton(
-        icon: Icon(Icons.settings_outlined, color: AppColors.primaryGold),
-        onPressed: onSettingsPressed,
-      ),
-      title: const Center(
-        child: Text(
-          AppStrings.appName,
-          style: TextStyle(
-            color: AppColors.primaryGold,
-            fontWeight: FontWeight.bold,
-            letterSpacing: 1.5,
-          ),
-        ),
-      ),
+      title: const Text('Flex Yemen'),
+      backgroundColor: Colors.amber,
       actions: [
-        CartBadge(cartCount: cartCount, onPressed: onCartPressed),
         IconButton(
-          icon: Icon(
-            isDarkMode ? Icons.wb_sunny_outlined : Icons.nightlight_round_outlined,
-            color: AppColors.primaryGold,
-          ),
+          icon: const Icon(Icons.shopping_cart),
+          onPressed: onCartPressed,
+        ),
+        IconButton(
+          icon: Icon(isDarkMode ? Icons.light_mode : Icons.dark_mode),
           onPressed: onThemeToggle,
         ),
       ],
