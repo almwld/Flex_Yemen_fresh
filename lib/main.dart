@@ -1,59 +1,55 @@
 import 'package:flutter/material.dart';
-import 'package:flex_yemen_fresh/screens/home_screen.dart';
-import 'package:flex_yemen_fresh/screens/map_screen.dart';
-import 'package:flex_yemen_fresh/screens/store_screen.dart';
-import 'package:flex_yemen_fresh/screens/profile_screen.dart';
-import 'package:flex_yemen_fresh/widgets/custom_app_bar.dart';
-import 'package:flex_yemen_fresh/widgets/bottom_nav_bar.dart';
-import 'package:flex_yemen_fresh/utils/constants.dart';
 
 void main() {
-  runApp(const FlexYemenApp());
+  runApp(const MyApp());
 }
 
-class FlexYemenApp extends StatefulWidget {
-  const FlexYemenApp({super.key});
-
-  @override
-  State<FlexYemenApp> createState() => _FlexYemenAppState();
-}
-
-class _FlexYemenAppState extends State<FlexYemenApp> {
-  int _currentIndex = 0;
-
-  final List<Widget> _pages = const [
-    HomeScreen(),
-    MapScreen(),
-    StoreScreen(),
-    ProfileScreen(),
-  ];
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: AppStrings.appName,
+      title: 'Flex Yemen',
       theme: ThemeData(
         primarySwatch: Colors.amber,
         useMaterial3: true,
       ),
-      home: Scaffold(
-        appBar: CustomAppBar(
-          isDarkMode: false,
-          cartCount: 0,
-          onThemeToggle: () {},
-          onSettingsPressed: () {},
-          onCartPressed: () {},
-        ),
-        body: _pages[_currentIndex],
-        bottomNavigationBar: BottomNavBar(
-          currentIndex: _currentIndex,
-          isDarkMode: false,
-          onItemTapped: (index) {
-            setState(() {
-              _currentIndex = index;
-            });
-          },
+      home: const MyHomePage(),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key});
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Flex Yemen'),
+        backgroundColor: Colors.amber,
+      ),
+      body: const Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'مرحباً بك في Flex Yemen',
+              style: TextStyle(fontSize: 24),
+            ),
+            SizedBox(height: 20),
+            Text(
+              'التطبيق يعمل بنجاح',
+              style: TextStyle(fontSize: 18, color: Colors.green),
+            ),
+          ],
         ),
       ),
     );
